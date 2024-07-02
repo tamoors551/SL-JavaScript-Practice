@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Animation</title>
+  <link rel="stylesheet" href="styles.css">
+<style>
+    #box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+}
+
+</style>
+</head>
+<body>
+  <div id="box"></div>
+
+  <script src="script.js"></script>
+  <script>
+    const box = document.getElementById('box');
+let posX = 0; // Initial position
+
+function moveBox() {
+  // Increment position by 5 pixels
+  posX += 5;
+
+  // Apply the new position
+  box.style.left = posX + 'px';
+
+  // Repeat the animation
+  if (posX < window.innerWidth - 100) { // Subtracting box width to keep it within the window
+    requestAnimationFrame(moveBox);
+  }
+}
+
+// Start the animation
+moveBox();
+
+  </script>
+</body>
+</html>

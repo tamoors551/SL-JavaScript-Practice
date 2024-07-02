@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Listener Example & Print function </title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightgray;
+            margin: 10px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        #physicsContent {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="clickBtn">Click Me</button>
+    <button id="printBtn">Print Page</button>
+    <input type="text" id="inputField" placeholder="Type something">
+    <div id="hoverBox" class="box"></div>
+    <div id="dblClickBox" class="box"></div>
+    <p id="counter">Counter: 0</p>
+
+    <div id="physicsContent">
+        <h2>Newton's Laws of Motion</h2>
+        <p><strong>First Law:</strong> An object will remain at rest or in uniform motion in a straight line unless acted upon by an external force. This is also known as the law of inertia.</p>
+        <p><strong>Second Law:</strong> The force acting on an object is equal to the mass of that object times its acceleration. Mathematically, F = ma.</p>
+        <p><strong>Third Law:</strong> For every action, there is an equal and opposite reaction.</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // Counter initialization
+    let counter = 0;
+
+    // Click event listener with counter increment
+    document.getElementById('clickBtn').addEventListener('click', () => {
+        counter++;
+        document.getElementById('counter').innerText = `Counter: ${counter}`;
+    });
+
+    // Print event listener
+    document.getElementById('printBtn').addEventListener('click', () => {
+        window.print();
+    });
+
+    // Input event listener
+    document.getElementById('inputField').addEventListener('input', (event) => {
+        console.log(`Input value: ${event.target.value}`);
+    });
+
+    // Mouse enter and leave event listeners for hover effect
+    const hoverBox = document.getElementById('hoverBox');
+    hoverBox.addEventListener('mouseenter', () => {
+        hoverBox.style.backgroundColor = 'lightblue';
+    });
+    hoverBox.addEventListener('mouseleave', () => {
+        hoverBox.style.backgroundColor = 'lightgray';
+    });
+
+    // Double click event listener
+    const dblClickBox = document.getElementById('dblClickBox');
+    dblClickBox.addEventListener('dblclick', () => {
+        dblClickBox.style.backgroundColor = 'lightgreen';
+    });
+});
+
+    </script>
+</body>
+</html>

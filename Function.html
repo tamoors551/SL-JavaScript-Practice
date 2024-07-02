@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+            <h1>JavaScript Practice</h1>
+            <h1>JavaScript Function</h1>
+
+<input type="text" name="name" id="name"/>
+<button onclick="greet()" >
+        Greet
+    </button>
+<div class="greet">
+
+</div>
+
+</body>
+<script type="text/javascript" >
+    // Declare a function
+    function greet(){
+
+        
+        var name= document.getElementById("name").value;
+     
+     
+         //  alert("Hello "+name); 
+
+         document.getElementsByClassName("greet")[0].innerHTML="Hello "+name;  
+           
+
+
+    }
+
+
+
+
+
+</script>
+</html>

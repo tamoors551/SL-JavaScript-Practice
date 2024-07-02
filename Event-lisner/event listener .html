@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Listener Example</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightgray;
+            margin: 10px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <button id="clickBtn">Click Me</button>
+    <input type="text" id="inputField" placeholder="Type something">
+    <div id="hoverBox" class="box"></div>
+    <div id="dblClickBox" class="box"></div>
+    <p id="counter">Counter: 0</p>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // Counter initialization
+    let counter = 0;
+
+    // Click event listener with counter increment
+    document.getElementById('clickBtn').addEventListener('click', () => {
+        counter++;
+        document.getElementById('counter').innerText = `Counter: ${counter}`;
+    });
+
+    // Input event listener
+    document.getElementById('inputField').addEventListener('input', (event) => {
+        console.log(`Input value: ${event.target.value}`);
+    });
+
+    // Mouse enter and leave event listeners for hover effect
+    const hoverBox = document.getElementById('hoverBox');
+    hoverBox.addEventListener('mouseenter', () => {
+        hoverBox.style.backgroundColor = 'lightblue';
+    });
+    hoverBox.addEventListener('mouseleave', () => {
+        hoverBox.style.backgroundColor = 'lightgray';
+    });
+
+    // Double click event listener
+    const dblClickBox = document.getElementById('dblClickBox');
+    dblClickBox.addEventListener('dblclick', () => {
+        dblClickBox.style.backgroundColor = 'lightgreen';
+    });
+});
+
+    </script>
+</body>
+</html>

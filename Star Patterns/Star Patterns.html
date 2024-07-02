@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Patterns</title>
+  <!-- Style to make sure patterns display in a monospaced font and preserve whitespace -->
+  <style>
+    .pattern {
+      font-family: monospace;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+  <h1>Star Patterns</h1>
+  <!-- Divs to hold the star patterns -->
+  <div id="rightTriangle" class="pattern"></div>
+  <div id="invertedTriangle" class="pattern"></div>
+  <div id="pyramid" class="pattern"></div>
+
+  <script>
+    // Function to print a right triangle pattern
+    function printRightTriangle(rows) {
+      let pattern = '';
+      for (let i = 1; i <= rows; i++) {
+        // Append stars for each row
+        pattern += '*'.repeat(i) + '\n';
+      }
+      return pattern; // Return the complete pattern
+    }
+
+    // Function to print an inverted triangle pattern
+    function printInvertedTriangle(rows) {
+      let pattern = '';
+      for (let i = rows; i >= 1; i--) {
+        // Append stars for each row
+        pattern += '*'.repeat(i) + '\n';
+      }
+      return pattern; // Return the complete pattern
+    }
+
+    // Function to print a pyramid pattern
+    function printPyramid(rows) {
+      let pattern = '';
+      for (let i = 1; i <= rows; i++) {
+        // Calculate spaces and stars for each row
+        let spaces = ' '.repeat(rows - i);
+        let stars = '*'.repeat(2 * i - 1);
+        // Append spaces and stars to the pattern
+        pattern += spaces + stars + spaces + '\n';
+      }
+      return pattern; // Return the complete pattern
+    }
+
+    // Number of rows for the patterns
+    const rows = 5;
+
+    // Display the patterns in the respective divs
+    document.getElementById('rightTriangle').textContent = 'Right Triangle Pattern:\n' + printRightTriangle(rows);
+    document.getElementById('invertedTriangle').textContent = 'Inverted Triangle Pattern:\n' + printInvertedTriangle(rows);
+    document.getElementById('pyramid').textContent = 'Pyramid Pattern:\n' + printPyramid(rows);
+  </script>
+</body>
+</html>

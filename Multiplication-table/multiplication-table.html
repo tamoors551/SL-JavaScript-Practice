@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <style>
+        /* CSS for styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Multiplication Table Generator</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="generateTable()">Generate Table</button>
+    <div id="tableContainer"></div>
+</div>
+
+<script>
+    function generateTable() {
+        // Get the input value
+        const number = parseInt(document.getElementById("numberInput").value);
+        
+        // Check if the input is a valid number
+        if (isNaN(number)) {
+            alert("Invalid input. Please enter a valid number.");
+        } else {
+            // Create table HTML
+            let tableHtml = `<h3>Multiplication Table for ${number}</h3>`;
+            tableHtml += "<table>";
+            tableHtml += "<tr><th>Multiplier</th><th>Result</th></tr>";
+            
+            // Generate multiplication table
+            for (let i = 1; i <= 10; i++) {
+                tableHtml += `<tr><td>${number} x ${i}</td><td>${number * i}</td></tr>`;
+            }
+            
+            tableHtml += "</table>";
+            
+            // Display table
+            document.getElementById("tableContainer").innerHTML = tableHtml;
+        }
+    }
+</script>
+
+</body>
+</html>

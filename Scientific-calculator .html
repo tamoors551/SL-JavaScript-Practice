@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Scientific Calculator</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-group">
+                <input type="text" class="form-control" id="display" readonly placeholder="0">
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="clearDisplay()">C</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="backspace()">←</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendOperator('/')">÷</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendOperator('*')">×</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(7)">7</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(8)">8</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(9)">9</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendOperator('-')">−</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(4)">4</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(5)">5</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(6)">6</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendOperator('+')">+</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(1)">1</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(2)">2</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(3)">3</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary btn-block" onclick="calculate()">=</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendNumber(0)">0</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-light btn-block" onclick="appendDecimal()">.</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendFunction('Math.sqrt')">√</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendFunction('Math.pow')">^</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendTrigFunction('Math.sin')">sin</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendTrigFunction('Math.cos')">cos</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendTrigFunction('Math.tan')">tan</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-secondary btn-block" onclick="appendFunction('Math.log')">ln</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Function to append a number to the display
+    function appendNumber(number) {
+        var display = document.getElementById("display");
+        if (display.value === "0") {
+            display.value = number;
+        } else {
+            display.value += number;
+        }
+    }
+
+    // Function to append an operator to the display
+    function appendOperator(operator) {
+        var display = document.getElementById("display");
+        if (!display.value.endsWith(" ")) {
+            display.value += " " + operator + " ";
+        }
+    }
+
+    // Function to append a decimal point to the display
+    function appendDecimal() {
+        var display = document.getElementById("display");
+        var lastSegment = display.value.split(" ").pop();
+        if (!lastSegment.includes(".")) {
+            display.value += ".";
+        }
+    }
+
+    // Function to clear the display
+    function clearDisplay() {
+        document.getElementById("display").value = "0";
+    }
+
+    // Function to remove the last character from the display
+    function backspace() {
+        var display = document.getElementById("display");
+        display.value = display.value.slice(0, -1);
+        if (display.value === "" || display.value.endsWith(" ")) {
+            display.value = "0";
+        }
+    }
+
+    // Function to append a scientific function to the display
+    function appendFunction(func) {
+        var display = document.getElementById("display");
+        display.value += " " + func + "(";
+    }
+
+    // Function to append a trigonometric function to the display
+    function appendTrigFunction(func) {
+        var display = document.getElementById("display");
+        if (display.value === "0") {
+            display.value = func + "(Math.PI / 180 * ";
+        } else {
+            display.value += " " + func + "(Math.PI / 180 * ";
+        }
+    }
+
+    // Function to evaluate the expression in the display
+    function calculate() {
+        var display = document.getElementById("display");
+        try {
+            // Count open and close parentheses
+            var openParentheses = (display.value.match(/\(/g) || []).length;
+            var closeParentheses = (display.value.match(/\)/g) || []).length;
+            // Add missing closing parentheses
+            for (var i = 0; i < openParentheses - closeParentheses; i++) {
+                display.value += ")";
+            }
+            // Replace ^ with ** for exponentiation and evaluate the expression
+            display.value = eval(display.value.replace(/\^/g, "**"));
+        } catch (e) {
+            display.value = "Error";
+        }
+    }
+</script>
+</body>
+</html>
+
+
+/*
+Explanation of Key Sections:
+HTML Head:
+
+Includes the Bootstrap CSS for styling.
+Container:
+
+container class from Bootstrap for the main wrapper.
+mt-5 class for top margin.
+text-center class to center the title.
+Display:
+
+Input field for displaying the result and user input. It is read-only to prevent manual input.
+Buttons:
+
+Basic Operators and Clear Button: Organized in a grid layout with rows and columns. Bootstrap classes (btn, btn-secondary, btn-block) are used for styling.
+Number Buttons: Buttons for digits 0-9, with styling and click events to append numbers to the display.
+Scientific Functions: Buttons for trigonometric functions, square root, and logarithm. Clicking these buttons appends the function to the display.
+JavaScript Functions:
+
+appendNumber(number): Appends the number to the display or replaces the "0" if the display is empty.
+appendOperator(operator): Appends an operator with spaces around it to the display. e.g + (space+space)
+appendDecimal(): Adds a decimal point if not already present in the display.
+clearDisplay(): Resets the display to "0".
+backspace(): Removes the last character from the display. If the display is empty, resets to "0".
+appendFunction(func): Appends a scientific function to the display.
+calculate(): Evaluates the expression in the display. Uses eval() to compute the result, replacing ^ with ** for exponentiation and Math.sqrt as is.
+ Displays "Error" if the evaluation fails. Note that eval() is used here for simplicity but should be handled with care in a production environment due to security risks.
+This layout and functionality create a user-friendly scientific calculator with a responsive design, leveraging Bootstrap for styling and JavaScript for the logic.
+*/

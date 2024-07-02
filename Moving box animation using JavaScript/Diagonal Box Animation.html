@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Diagonal Box Animation</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <style>
+        #yellow {
+  width: 300px;
+  height: 300px;
+  border: 2px solid black;
+  position: relative;
+  
+}
+
+#red {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  position: absolute;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <!-- place navbar here -->
+    </header>
+    <main>
+      <div id="yellow"></div>
+      <div id="red"></div>
+      <button id="startButton">Start Animation</button>
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+   
+    <script type="text/javascript">
+    </script>
+    <!-- Optional JavaScript -->
+     <script>
+          function move( ){
+           
+           var redElem = document.getElementById('red');
+           var poe = 0;
+           var anim = setInterval(animate,5);
+               function animate(){
+                poe++;
+                   redElem.style.left = poe + 'px';
+                //    poe += 5;
+                //    if(poe > 200){
+                //        clearInterval(anim);
+                //    }
+               }
+           
+
+           
+
+        }
+
+     </script>
+  </body>
+</html>

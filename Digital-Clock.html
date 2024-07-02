@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        #clock {
+            background-color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div id="clock" class="card text-white bg-dark">
+                    <div class="card-body">
+                        <!-- Clock will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="clock.js"></script>
+    <script>
+        // clock.js
+
+function updateClock() {
+    const clockElement = document.querySelector('#clock .card-body');
+    const now = new Date();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    // Format the time to be two digits
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    // Display the time
+    clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+// Initial call to display the clock immediately
+updateClock();
+
+    </script>
+</body>
+</html>
